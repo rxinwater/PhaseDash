@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _currentInput;
 
     private bool _canDash = true;
-    private bool _isDashing;
     private float _lastDirection = 1f;
+    public bool isDashing { get; private set; }
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isDashing)
+        if (isDashing)
             return;
 
         _rb.linearVelocity = new Vector2(_currentInput.x * _speed, _rb.linearVelocity.y);
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
             _speed = _baseSpeed;
 
-        if (_isDashing)
+        if (isDashing)
             return;
 
         if (Input.GetKeyDown(KeyCode.Q) && _canDash)
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (grounded && !_isDashing)
+        if (grounded && !isDashing)
         {
             _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
         }
@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Dash()
     {
         _canDash = false;
-        _isDashing = true;
+        isDashing = true;
 
         float originalGravity = _rb.gravityScale;
         _rb.gravityScale = 0f;
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             tr.emitting = false;
 
         _rb.gravityScale = originalGravity;
-        _isDashing = false;
+        isDashing = false;
 
         yield return new WaitForSeconds(_dashingCooldown);
         _canDash = true;
