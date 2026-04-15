@@ -14,11 +14,7 @@ public class PlayerInput : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 movement = new Vector2(horizontal, 0f);
 
-        if (movement != _lastInput)
-        {
-            OnInputReceived.Invoke(movement);
-            _lastInput = movement;
-        }
+        OnInputReceived.Invoke(movement);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
