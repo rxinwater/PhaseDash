@@ -19,7 +19,7 @@ public class WinToggle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Win"))
+        if (collision.gameObject.CompareTag("Win")) //if tag is win, u win!
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             Debug.Log("Win condition met!");

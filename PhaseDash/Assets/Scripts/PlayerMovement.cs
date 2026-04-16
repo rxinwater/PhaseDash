@@ -47,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
             _lastDirection = Mathf.Sign(direction.x);
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() // is used for physics updates
     {
         if (isDashing)
             return;
 
-        _rb.linearVelocity = new Vector2(_currentInput.x * _speed, _rb.linearVelocity.y);
+        _rb.linearVelocity = new Vector2(_currentInput.x * _speed, _rb.linearVelocity.y);  // Set horizontal velocity based on input and speed, keeping vertical velocity unchanged
     }
 
     private void Update()
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (grounded && !isDashing)
         {
-            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce); // Set vertical velocity to jump force, keeping horizontal velocity unchanged
         }
     }
 
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
     }
 
-    private IEnumerator Dash()
+    private IEnumerator Dash()  // IEnumerator means this method can be paused and resumed
     {
         _canDash = false;
         isDashing = true;
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         float originalGravity = _rb.gravityScale;
         _rb.gravityScale = 0f;
 
-        float dashDirection = _currentInput.x != 0 ? Mathf.Sign(_currentInput.x) : _lastDirection;
+        float dashDirection = _currentInput.x != 0 ? Mathf.Sign(_currentInput.x) : _lastDirection; // Determine dash direction based on current input or last direction if no input
         _rb.linearVelocity = new Vector2(dashDirection * _dashingPower, 0f);
 
         if (tr != null)

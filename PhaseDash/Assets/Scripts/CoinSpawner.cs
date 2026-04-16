@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
     [SerializeField] private GameObject _coinPrefab;
-    [SerializeField] private List<Transform> _coinSpawnLocations = new List<Transform>();
+    [SerializeField] private List<Transform> _coinSpawnLocations = new List<Transform>(); //list of locations where coins will spawn
     void Start()
     {
         foreach (Transform location in _coinSpawnLocations)

@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        float horizontal = Input.GetAxisRaw("Horizontal"); 
         Vector2 movement = new Vector2(horizontal, 0f);
 
         OnInputReceived.Invoke(movement);

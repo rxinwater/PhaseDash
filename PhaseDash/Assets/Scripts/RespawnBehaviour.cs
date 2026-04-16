@@ -1,16 +1,15 @@
-
 using UnityEngine;
 
 
 public class RespawnBehaviour : MonoBehaviour
 {
-
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-
+        
+    
 
     }
 
@@ -23,7 +22,7 @@ public class RespawnBehaviour : MonoBehaviour
     {
         if (transform.position.y <= 33f)
         {
-            transform.position = new Vector3(9.08f, 40.6f, 0f);
+            transform.position = new Vector3(9.08f, 40.6f, 0f); //just tp back idk 
         }
     }
 }

@@ -32,7 +32,7 @@ public class BarrierDisable : MonoBehaviour
         foreach (var col in allColliders)
         {
             if (col == null) continue;
-            if (!col.CompareTag("barrier")) continue;
+            if (!col.CompareTag("barrier")) continue;  //if tag is not barrier, skip
             if (ignored.Contains(col)) continue;
 
             Physics2D.IgnoreCollision(playerCol, col, true);
@@ -42,10 +42,10 @@ public class BarrierDisable : MonoBehaviour
 
     private void RestoreAll()
     {
-        foreach (var col in ignored)
+        foreach (var col in ignored) 
         {
             if (col != null)
-                Physics2D.IgnoreCollision(playerCol, col, false);
+                Physics2D.IgnoreCollision(playerCol, col, false); // Restore collision
         }
 
         ignored.Clear();
