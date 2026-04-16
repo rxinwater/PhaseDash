@@ -1,22 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject coinPrefab;
-
-    private void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private List<Transform> _coinSpawnLocations = new List<Transform>();
+    void Start()
     {
-        float startX = 9.0f;
-        float y = -5.23f;
-        float spacing = 2.0f;
-        int amount = 5;
-
-        for (int i = 0; i < amount; i++)
+        foreach (Transform location in _coinSpawnLocations)
         {
-            float x = startX + (i * spacing);
-            Vector3 spawnPos = new Vector3(x, y, 0f);
-
-            Instantiate(coinPrefab, spawnPos, Quaternion.identity);
+            Instantiate(_coinPrefab, location.position, location.rotation);
         }
     }
-}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+   
+  }
